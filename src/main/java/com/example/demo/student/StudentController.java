@@ -17,13 +17,18 @@ public class StudentController {
         this.studentService = studentService;
     }
 
+    @GetMapping("Welcome")
+    public String greeting(){
+        return "Hello guys";
+    }
+
     @GetMapping("api/vi/student")
     public List<Student> getStudents(){
     return studentService.getStudents();
     }
 
 
-//    @CrossOrigin(origins = "http://localhost:3000/")
+    @CrossOrigin(origins = "http://localhost:3000/")
     @GetMapping("api/vi/student/{studentId}")
     public Optional<Student> getStudent (
             @PathVariable("studentId") Long stdId
