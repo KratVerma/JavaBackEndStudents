@@ -7,8 +7,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 import java.util.Optional;
 
-@RestController
-@RequestMapping(path = "api/v1/student")
+@RestController("/")
 public class StudentController {
 
     private final StudentService studentService;
@@ -18,30 +17,31 @@ public class StudentController {
         this.studentService = studentService;
     }
 
-    @GetMapping
+    @GetMapping("api/vi/student")
     public List<Student> getStudents(){
     return studentService.getStudents();
     }
 
-    @CrossOrigin(origins = "http://localhost:3000/")
-    @GetMapping(path = "{studentId}")
+
+//    @CrossOrigin(origins = "http://localhost:3000/")
+    @GetMapping("api/vi/student/{studentId}")
     public Optional<Student> getStudent (
             @PathVariable("studentId") Long stdId
     ) {
         return studentService.getOneStudent(stdId);
     }
 
-    @PostMapping
+    @PostMapping("api/vi/student")
     public void registerNewStudent(@RequestBody Student student){
     StudentService.addNewStudent(student);
     }
 
-    @DeleteMapping(path = "{studentId}")
+    @DeleteMapping("api/vi/student/{studentId}")
     public void deleteStudent(@PathVariable("studentId") Long stdId){
         studentService.deleteStudent(stdId);
     }
 
-    @PutMapping(path = "{studentId}")
+    @PutMapping("api/vi/student/{studentId}")
     public void updateStudent(
             @PathVariable("studentId") Long stdId,
             @RequestParam(required = false) String name,
